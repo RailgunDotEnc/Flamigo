@@ -19,19 +19,25 @@ const HomeScreen = () => {
         style={styles.body}
         imageStyle={styles.backgroundImageStyle}
       >
-        {/* Body Section 1 (2 times bigger) */}
+        <View style={styles.actions}>
+          <Image source={require('../assets/talk.png')} style={styles.talk}/>
+          <Image source={require('../assets/scan.png')} style={styles.third}/>
+          <Image source={require('../assets/scan.png')} style={styles.scan}/>
+        </View>
         <View style={styles.bodySection1}>
-          <Image source={require('../assets/character/Character.png')} style={styles.characterImage}/>
+          <View style={styles.status}>
+              <Text style={styles.lvText}>LV: 0</Text>
+              <Image source={require('../assets/health.png')} style={styles.healthImage}/>
+          </View>
+          <View style={styles.chara}>
+            <Image source={require('../assets/character/Character.png')} style={styles.characterImage}/>
+          </View>
         </View>
 
-        {/* Body Section 2 (light dark transparent background) */}
         <View style={styles.bodySection2}>
           <Text style={styles.bodyText}>Body Section 2</Text>
         </View>
-
       </ImageBackground>
-
-
     </View>
   );
 };

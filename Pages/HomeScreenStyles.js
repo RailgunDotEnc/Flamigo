@@ -53,6 +53,12 @@ export const styles = StyleSheet.create({
     width: 150,
     height: 150,
   },
+  healthImage: {
+    resizeMode: 'center',
+    left: "0%",
+    width: 250,
+    height: 250,
+  },
   noteSection: {
     backgroundColor: 'lightcoral',
     padding: 15,
@@ -64,6 +70,53 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     top: "5%",
   },
+  lvText: {
+    fontSize: 28,
+    bottom: "-130%",
+    left:"-5%",
+    fontStyle: 'italic',
+
+  },
+  actions: {
+    flex: 2, // Takes 2/3 of the body height
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  status: {
+    flex: 1, // Takes 2/3 of the body height
+    justifyContent: 'center',
+    alignItems: 'center',
+    
+  },
+  chara: {
+    flex: 3, 
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  talk: {
+    resizeMode: 'center',
+    flex: 1,
+    width: 60,
+    height: 60,
+    top:"10%",
+  },
+  third: {
+    resizeMode: 'center',
+    flex: 1,
+    width: 60,
+    height: 60,
+    top:"-10%",
+  },
+  scan: {
+    resizeMode: 'center',
+    flex: 1,
+    width: 60,
+    height: 60,
+    top:"10%",
+  },
+  
 });
 
 
