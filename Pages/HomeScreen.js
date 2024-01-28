@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, Image, ImageBackground, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, Image, ImageBackground, TouchableOpacity, FlatList, TextInput } from 'react-native';
 import { styles } from './HomeScreenStyles';
-
+import { useRef } from 'react';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -13,6 +13,9 @@ const HomeScreen = () => {
     Task3: { checked: false, description: 'Battle one numeric monster' },
     // Add more items as needed
   };
+  var [password, onChangeText] = React.useState('');
+    
+  var inputref=useRef();
 
   const renderItem = ({ item }) => (
     <View style={styles.listItem}>
@@ -79,6 +82,14 @@ const HomeScreen = () => {
           </TouchableOpacity>
         </View>
         <View style={styles.bodySection1}>
+        <TextInput 
+                    ref={input => { inputref = input }}
+                    style={styles.InputBox}
+                    secureTextEntry={true}
+                    onChangeText={onChangeText}
+                    placeholder='****'
+                    value={password}
+          />  
           <View style={styles.status}>
               <Text style={styles.lvText}>Flamigo LV: 0</Text>
               <Image source={require('../assets/health.png')} style={styles.healthImage}/>
@@ -93,7 +104,8 @@ const HomeScreen = () => {
         </View>
         </View>
 
-        
+
+          
 
         <View style={styles.bodySection2}>
           <Text style={styles.bodyText}>Body Section 2</Text>

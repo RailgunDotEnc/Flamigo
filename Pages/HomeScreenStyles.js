@@ -56,7 +56,7 @@ export const styles = StyleSheet.create({
   healthImage: {
     resizeMode: 'center',
     left: "-24%",
-    bottom:"30%",
+    bottom:"50%",
     width: 200,
     height: 250,
   },
@@ -100,21 +100,21 @@ export const styles = StyleSheet.create({
     flex: 1,
     width: 60,
     height: 60,
-    top:"30%",
+    top:"0%",
   },
   battle: {
     resizeMode: 'center',
     flex: 1,
     width: 60,
     height: 60,
-    top:"0%",
+    top:"-20%",
   },
   scan: {
     resizeMode: 'center',
     flex: 1,
     width: 60,
     height: 60,
-    top:"30%",
+    top:"0%",
   },
   button:{
     flex:1,
@@ -159,7 +159,32 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     maxWidth:"40%",
     height:"80%",
-  }
+  },
+  Prompt:{
+    backgroundColor:'rgba(0, 0, 0, 0.3)',
+    fontFamily: "serif",
+    textShadowColor:"black",
+    textShadowRadius:7,
+    textShadowOffset: {width: 3, height: 3},
+    fontWeight:'bold',
+    fontSize: 25,
+    position: "absolute",
+    fontStyle: "italic",
+    textAlign: 'center',
+    top:"60%",
+},
+InputBox:{
+  borderColor:"black",
+  backgroundColor:"rgba(0, 0, 0, 0.3)",
+  width:200,
+  height: 50,
+  borderWidth: 4,
+  fontSize: 25,
+  top:"-25%",
+  textAlign: 'center',
+  left:"0%",
+
+},
 });
 
 
