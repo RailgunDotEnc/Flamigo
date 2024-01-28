@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
-import { Camera } from 'expo-camera';
-import * as MediaLibrary from 'expo-media-library';
-import { styles } from './HomeScreenStyles';
-import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useState, useRef } from "react";
+import { View, Text, TouchableOpacity, Image } from "react-native";
+import { Camera } from "expo-camera";
+import * as MediaLibrary from "expo-media-library";
+import { styles } from "./HomeScreenStyles";
+import { useNavigation } from "@react-navigation/native";
 
 const CameraPage = () => {
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
@@ -12,15 +12,15 @@ const CameraPage = () => {
   const cameraRef = useRef(null);
   const navigation = useNavigation();
   const HomePress = () => {
-    console.log('Home pressed');
+    console.log("Home pressed");
     // Navigate to the "Home" screen
-    navigation.navigate('Home');
+    navigation.navigate("Home");
   };
 
   useEffect(() => {
     (async () => {
       const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasCameraPermission(status === 'granted');
+      setHasCameraPermission(status === "granted");
     })();
   }, []);
 
@@ -36,26 +36,53 @@ const CameraPage = () => {
     if (cameraRef.current) {
       try {
         // Display a flash effect
-        await cameraRef.current.takePictureAsync({ onPictureSaved });
+        // const options = { quality: 0.5, base64: true };
+        const data = await cameraRef.current.takePictureAsync();
+        setCapturedImage(data.uri);
+
+        // Hard coded response for example
+        respnose = Math.random() < 0.5;
+        console.log(respnose);
+
+        // console.log(data.uri);
+        // ImageBase64.getBase64String(data.uri)
+        //   .then((base64String) => {
+        //     console.log("sjkfladjskfsjk: ", base64String);
+        //   })
+        //   .catch((error) => {
+        //     console.error("error converting base 64 string\n");
+        //   });
+
+        // const genAI = new GoogleGenerativeAI(
+        //   "AIzaSyBuJABwPdPubpk6cmNCcADxdJhlFfGmsiw"
+        // );
+        // const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
+        // const result = await model.generateContent([
+        //   "What's in this photo?",
+        //   data.uri,
+        // ]);
+        // const response = await result.response;
+        // const text = response.text();
+        // console.log(text);
 
         // You can further handle the saved photo URI as needed
       } catch (error) {
-        console.error('Error taking or saving picture:', error);
+        console.error("Error taking or saving picture:", error);
         // Handle error
       }
     }
   };
 
-  const onPictureSaved = async (photo) => {
-    console.log('Photo taken:', photo.uri);
+  // const onPictureSaved = async (photo) => {
+  //   console.log("Photo taken:", photo.uri);
 
-    // Save the captured photo to the device's photo library
-    await MediaLibrary.saveToLibraryAsync(photo.uri);
-    console.log('Photo saved to library');
+  //   // Save the captured photo to the device's photo library
+  //   await MediaLibrary.saveToLibraryAsync(photo.uri);
+  //   console.log("Photo saved to library");
 
-    // Display the captured image
-    setCapturedImage(photo.uri);
-  };
+  //   // Display the captured image
+  //   setCapturedImage(photo.uri);
+  // };
 
   if (hasCameraPermission === null) {
     return <Text>Requesting camera permission...</Text>;
@@ -67,59 +94,67 @@ const CameraPage = () => {
 
   return (
     <View style={{ flex: 1 }}>
-
-        <View style={styles.navbar}>
-                <TouchableOpacity onPress={HomePress}>
-            <Image source={require('../assets/house.png')} style={styles.navbarImage} />
+      <View style={styles.navbar}>
+        <TouchableOpacity onPress={HomePress}>
+          <Image
+            source={require("../assets/house.png")}
+            style={styles.navbarImage}
+          />
         </TouchableOpacity>
         <Text style={styles.headText}>Flamigo</Text>
-        <Image source={require('../assets/Settings.png')} style={styles.navbarImage} />
+        <Image
+          source={require("../assets/Settings.png")}
+          style={styles.navbarImage}
+        />
       </View>
-      
+
       <Camera style={{ flex: 1 }} type={cameraType} ref={cameraRef}>
         <View
           style={{
             flex: 1,
-            backgroundColor: 'transparent',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
+            backgroundColor: "transparent",
+            flexDirection: "row",
+            justifyContent: "space-between",
             margin: 20,
           }}
         >
           <TouchableOpacity
             style={{
-              alignSelf: 'flex-end',
-              alignItems: 'center',
+              alignSelf: "flex-end",
+              alignItems: "center",
             }}
             onPress={flipCamera}
           >
-            <Text style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
+            <Text style={{ fontSize: 18, marginBottom: 10, color: "white" }}>
               Flip
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
-                flex: 0.1,
-                alignSelf: 'center',
-                alignItems: 'center',
-                bottom:"-80%",
-                left:"-22%",
+              flex: 0.1,
+              alignSelf: "center",
+              alignItems: "center",
+              bottom: "-80%",
+              left: "-22%",
             }}
             onPress={takePicture}
-            >
-            <Image source={require('../assets/camera.png')} style={styles.camImage} />
-            </TouchableOpacity>
+          >
+            <Image
+              source={require("../assets/camera.png")}
+              style={styles.camImage}
+            />
+          </TouchableOpacity>
         </View>
       </Camera>
 
       {capturedImage && (
         <View
           style={{
-            position: 'absolute',
+            position: "absolute",
             bottom: 20,
             right: 20,
             borderRadius: 10,
-            overflow: 'hidden',
+            overflow: "hidden",
           }}
         >
           <Image
@@ -133,8 +168,3 @@ const CameraPage = () => {
 };
 
 export default CameraPage;
-
-
-
-
-
