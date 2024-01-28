@@ -1,0 +1,11 @@
+{
+  "name": "Jux",
+  "lv": 1,
+  "health": 100,
+  "happiness": 100,
+  "exp": 0.3,
+  "progress": {
+    "1/26/2024 Task": "Some task details here"
+  }
+}
+
