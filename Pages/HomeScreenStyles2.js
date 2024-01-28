@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     flex: 2, // 2 times bigger
   },
   bodySection1: {
-    flex: 2, // Takes 2/3 of the body height
+    flex: 3, // Takes 2/3 of the body height
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -60,15 +60,29 @@ export const styles = StyleSheet.create({
   },
   healthImage: {
     resizeMode: 'center',
-    left: "0%",
-    bottom:"35%",
-    width: 200,
+    left: "-25%",
+    bottom:"-80%",
+    width: 150,
     height: 250,
   },
   lvText: {
     fontSize: 28,
-    bottom: "-40%",
-    left:"0%",
+    bottom: "-145%",
+    left:"-25%",
+    fontStyle: 'italic',
+
+  },
+  healthImage2: {
+    resizeMode: 'center',
+    left: "30%",
+    bottom:"10%",
+    width: 150,
+    height: 250,
+  },
+  lvText2: {
+    fontSize: 28,
+    bottom: "-45%",
+    left:"30%",
     fontStyle: 'italic',
 
   },
@@ -101,27 +115,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  talk: {
-    resizeMode: 'center',
-    flex: 1,
-    width: 60,
-    height: 60,
-    top:"0%",
-  },
-  battle: {
-    resizeMode: 'center',
-    flex: 1,
-    width: 60,
-    height: 60,
-    top:"-20%",
-  },
-  scan: {
-    resizeMode: 'center',
-    flex: 1,
-    width: 60,
-    height: 60,
-    top:"0%",
-  },
+
   button:{
     flex:1,
     justifyContent: 'center',
@@ -158,13 +152,12 @@ export const styles = StyleSheet.create({
   },
   env2:{
     flex: 1, // Takes 1/3 of the body height
-    backgroundColor: 'rgba(0, 0, 0, 0.3)', // Light dark transparent background
+    backgroundColor: 'rgba(0, 0, 0, 0)', // Light dark transparent background
     justifyContent: 'flex-start', // Move content to the top
     alignItems: 'flex-start', // Align content to the left
-    borderColor: 'black',
-    borderWidth: 2,
     maxWidth:"40%",
     height:"80%",
+    right:"10%",
   },
   Prompt:{
     backgroundColor:'rgba(0, 0, 0, 0.3)',
@@ -200,7 +193,7 @@ subImage: {
   resizeMode: 'center',
   width: 50,
   height: 50,
-  top:"-7%",
+  top:"-95%",
   left:"70%",
 },
 });

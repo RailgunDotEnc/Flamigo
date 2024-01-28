@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     flex: 2, // 2 times bigger
   },
   bodySection1: {
-    flex: 2, // Takes 2/3 of the body height
+    flex: 3, // Takes 2/3 of the body height
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -61,13 +61,13 @@ export const styles = StyleSheet.create({
   healthImage: {
     resizeMode: 'center',
     left: "0%",
-    bottom:"35%",
+    bottom:"0%",
     width: 200,
     height: 250,
   },
   lvText: {
     fontSize: 28,
-    bottom: "-40%",
+    bottom: "-50%",
     left:"0%",
     fontStyle: 'italic',
 
@@ -101,27 +101,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  talk: {
-    resizeMode: 'center',
-    flex: 1,
-    width: 60,
-    height: 60,
-    top:"0%",
-  },
-  battle: {
-    resizeMode: 'center',
-    flex: 1,
-    width: 60,
-    height: 60,
-    top:"-20%",
-  },
-  scan: {
-    resizeMode: 'center',
-    flex: 1,
-    width: 60,
-    height: 60,
-    top:"0%",
-  },
+
   button:{
     flex:1,
     justifyContent: 'center',
@@ -165,6 +145,7 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     maxWidth:"40%",
     height:"80%",
+    right:"10%",
   },
   Prompt:{
     backgroundColor:'rgba(0, 0, 0, 0.3)',
@@ -200,7 +181,7 @@ subImage: {
   resizeMode: 'center',
   width: 50,
   height: 50,
-  top:"-7%",
+  top:"-95%",
   left:"70%",
 },
 });
