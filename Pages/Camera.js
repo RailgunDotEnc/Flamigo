@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Alert } from 'react-native';
 import { Camera } from 'expo-camera';
 import * as MediaLibrary from 'expo-media-library';
 import { styles } from './HomeScreenStyles';
 import { useNavigation } from '@react-navigation/native';
+import fetch from 'isomorphic-fetch'; // Import isomorphic-fetch
 
 const CameraPage = () => {
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
@@ -11,11 +12,6 @@ const CameraPage = () => {
   const [capturedImage, setCapturedImage] = useState(null);
   const cameraRef = useRef(null);
   const navigation = useNavigation();
-  const HomePress = () => {
-    console.log('Home pressed');
-    // Navigate to the "Home" screen
-    navigation.navigate('Home');
-  };
 
   useEffect(() => {
     (async () => {
@@ -55,6 +51,62 @@ const CameraPage = () => {
 
     // Display the captured image
     setCapturedImage(photo.uri);
+
+    // Call the API to process the image asynchronously
+    callApiWithImage(photo.uri);
+  };
+
+  const callApiWithImage = async (imageUri) => {
+    try {
+      // Read the image file and convert it to base64
+      const imageData = await fs.promises.readFile(imageUri, { encoding: 'base64' });
+
+      // Prepare the request body
+      const requestBody = {
+        contents: [
+          {
+            parts: [
+              { text: 'What is this picture?' },
+              {
+                inline_data: {
+                  mime_type: 'image/jpeg',
+                  data: imageData,
+                },
+              },
+            ],
+          },
+        ],
+      };
+
+      // API key for Google Cloud API
+      const apiKey = 'YOUR_GOOGLE_CLOUD_API_KEY';
+
+      // Make the HTTP request using fetch
+      const response = await fetch(
+        'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=' +
+          apiKey,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
+
+      const data = await response.json();
+      // Handle the API response data as needed
+      console.log(data);
+    } catch (error) {
+      // Handle error
+      //Alert.alert('Error', 'Failed to process image. Please try again.');
+    }
+  };
+
+  const HomePress = () => {
+    console.log('Home pressed');
+    // Navigate to the "Home" screen
+    navigation.navigate('Home');
   };
 
   if (hasCameraPermission === null) {
@@ -67,15 +119,14 @@ const CameraPage = () => {
 
   return (
     <View style={{ flex: 1 }}>
-
-        <View style={styles.navbar}>
-                <TouchableOpacity onPress={HomePress}>
-            <Image source={require('../assets/house.png')} style={styles.navbarImage} />
+      <View style={styles.navbar}>
+        <TouchableOpacity onPress={HomePress}>
+          <Image source={require('../assets/house.png')} style={styles.navbarImage} />
         </TouchableOpacity>
         <Text style={styles.headText}>Flamigo</Text>
         <Image source={require('../assets/Settings.png')} style={styles.navbarImage} />
       </View>
-      
+
       <Camera style={{ flex: 1 }} type={cameraType} ref={cameraRef}>
         <View
           style={{
@@ -93,22 +144,20 @@ const CameraPage = () => {
             }}
             onPress={flipCamera}
           >
-            <Text style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
-              Flip
-            </Text>
+            <Text style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>Flip</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
-                flex: 0.1,
-                alignSelf: 'center',
-                alignItems: 'center',
-                bottom:"-80%",
-                left:"-22%",
+              flex: 0.1,
+              alignSelf: 'center',
+              alignItems: 'center',
+              bottom: '-80%',
+              left: '-22%',
             }}
             onPress={takePicture}
-            >
+          >
             <Image source={require('../assets/camera.png')} style={styles.camImage} />
-            </TouchableOpacity>
+          </TouchableOpacity>
         </View>
       </Camera>
 
@@ -122,10 +171,7 @@ const CameraPage = () => {
             overflow: 'hidden',
           }}
         >
-          <Image
-            source={{ uri: capturedImage }}
-            style={{ width: 100, height: 150 }}
-          />
+          <Image source={{ uri: capturedImage }} style={{ width: 100, height: 150 }} />
         </View>
       )}
     </View>

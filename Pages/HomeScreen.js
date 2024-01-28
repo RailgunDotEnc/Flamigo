@@ -24,7 +24,11 @@ const HomeScreen = ({ navigation }) => {
     Task3: { checked: false, description: 'Battle one numeric monster' },
     // Add more items as needed
   });
-
+  const SettingsPress = () => {
+    console.log('Settings Pressed');
+    // Navigate to the "Home" screen
+    navigation.navigate('Settings');
+  };
   const renderItem = ({ item }) => (
     <View style={styles.listItem}>
       <View style={styles.itemContent}>
@@ -98,7 +102,9 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.navbar}>
           <Image source={require('../assets/house.png')} style={styles.navbarImage} />
           <Text style={styles.headText}>Flamigo</Text>
+          <TouchableOpacity onPress={SettingsPress}>
           <Image source={require('../assets/Settings.png')} style={styles.navbarImage} />
+          </TouchableOpacity>
         </View>
 
         <ImageBackground

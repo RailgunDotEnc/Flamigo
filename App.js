@@ -7,6 +7,7 @@ import HomeScreen from './Pages/HomeScreen';
 import HomeScreen1 from './Pages/HomeScreen1';
 import HomeScreen2 from './Pages/HomeScreen2';
 import Camera from './Pages/Camera';
+import Settings from './Pages/Settings';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ const App = () => {
         <Stack.Screen name="Camera" component={Camera}  options={{ headerShown: false }}/>
         <Stack.Screen name="Home1" component={HomeScreen1} options={{ headerShown: false }} />
         <Stack.Screen name="Home2" component={HomeScreen2} options={{ headerShown: false }} />
+        <Stack.Screen name="Settings" component={Settings} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
