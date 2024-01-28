@@ -1,6 +1,6 @@
 // HomeScreenStyles.js
 
-import { StyleSheet } from 'react-native';
+import { Button, StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
@@ -116,6 +116,11 @@ export const styles = StyleSheet.create({
     height: 60,
     top:"10%",
   },
+  button:{
+    flex:1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
   
 });
 
