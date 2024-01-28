@@ -32,14 +32,13 @@ export const styles = StyleSheet.create({
   bodySection2: {
     flex: 1, // Takes 1/3 of the body height
     backgroundColor: 'rgba(0, 0, 0, 0.3)', // Light dark transparent background
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'flex-start', // Move content to the top
+    alignItems: 'flex-start', // Align content to the left
     borderColor: 'black',
     borderWidth: 2,
-    maxWidth: "99%",
-    left: ".5%",
-    bottom: ".2%",
-  },
+    width: "100%", // Take full width
+    paddingHorizontal: 10, // Add some padding if needed
+  },  
   backgroundImageStyle: {
     resizeMode: 'cover',
     width: '100%',
@@ -52,11 +51,13 @@ export const styles = StyleSheet.create({
   characterImage: {
     width: 150,
     height: 150,
+    left:"-30%",
   },
   healthImage: {
     resizeMode: 'center',
-    left: "0%",
-    width: 250,
+    left: "-24%",
+    bottom:"30%",
+    width: 200,
     height: 250,
   },
   noteSection: {
@@ -72,8 +73,8 @@ export const styles = StyleSheet.create({
   },
   lvText: {
     fontSize: 28,
-    bottom: "-130%",
-    left:"-5%",
+    bottom: "-45%",
+    left:"-25%",
     fontStyle: 'italic',
 
   },
@@ -90,9 +91,8 @@ export const styles = StyleSheet.create({
     
   },
   chara: {
-    flex: 3, 
+    flex: 1, 
     justifyContent: 'center',
-    alignItems: 'center',
   },
 
   talk: {
@@ -100,21 +100,21 @@ export const styles = StyleSheet.create({
     flex: 1,
     width: 60,
     height: 60,
-    top:"10%",
+    top:"30%",
   },
-  third: {
+  battle: {
     resizeMode: 'center',
     flex: 1,
     width: 60,
     height: 60,
-    top:"-10%",
+    top:"0%",
   },
   scan: {
     resizeMode: 'center',
     flex: 1,
     width: 60,
     height: 60,
-    top:"10%",
+    top:"30%",
   },
   button:{
     flex:1,
@@ -126,7 +126,40 @@ export const styles = StyleSheet.create({
     width: 60,
     height: 60,
   },
+  checkmark:{
+    width:25,
+    height:25,
+  },
+  itemContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   
+  textContainer: {
+    marginLeft: 10, // Adjust the margin as needed
+  },
+  
+  description: {
+    marginLeft: 5, // Adjust the margin as needed
+    color: 'black', // Optional: You can customize the color of the description
+  },
+  env: {
+    flex: 1, // Takes 2/3 of the body height
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection:'row',
+    bottom:"20%",
+  },
+  env2:{
+    flex: 1, // Takes 1/3 of the body height
+    backgroundColor: 'rgba(0, 0, 0, 0.3)', // Light dark transparent background
+    justifyContent: 'flex-start', // Move content to the top
+    alignItems: 'flex-start', // Align content to the left
+    borderColor: 'black',
+    borderWidth: 2,
+    maxWidth:"40%",
+    height:"80%",
+  }
 });
 
 

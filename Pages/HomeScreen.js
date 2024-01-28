@@ -1,15 +1,38 @@
-// HomeScreen.js
-
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, Image, ImageBackground, TouchableOpacity } from 'react-native';
+import { View, Text, Image, ImageBackground, TouchableOpacity, FlatList } from 'react-native';
 import { styles } from './HomeScreenStyles';
+
 
 const HomeScreen = () => {
   const navigation = useNavigation();
-  const handleTalkPress = () => {
-    // Implement logic for Talk button press
-    console.log('Talk button pressed');
+
+  const itemsData = {
+    Task1: { checked: false, description: 'Take a picture of a liquid state matter' },
+    Task2: { checked: true, description: "Answer 1 of {name}'s questions" },
+    Task3: { checked: false, description: 'Battle one numeric monster' },
+    // Add more items as needed
+  };
+
+  const renderItem = ({ item }) => (
+    <View style={styles.listItem}>
+      <View style={styles.itemContent}>
+        <Image
+          source={itemsData[item].checked ? require('../assets/check.png') : require('../assets/uncheck.png')}
+          style={styles.checkmark}
+        />
+        <View style={styles.textContainer}>
+          <Text style={styles.bodyText}>{item}</Text>
+          <Text style={styles.description}>{itemsData[item].description}</Text>
+        </View>
+      </View>
+    </View>
+  );
+  
+
+
+  const handleTalkPress = async () => {
+    console.log("Ask");
   };
 
   const handleThirdPress = () => {
@@ -47,7 +70,7 @@ const HomeScreen = () => {
 
           {/* Third Button */}
           <TouchableOpacity onPress={handleThirdPress} style={styles.button}>
-            <Image source={require('../assets/scan.png')} style={styles.third} />
+            <Image source={require('../assets/battle.png')} style={styles.battle} />
           </TouchableOpacity>
 
           {/* Scan Button */}
@@ -57,16 +80,28 @@ const HomeScreen = () => {
         </View>
         <View style={styles.bodySection1}>
           <View style={styles.status}>
-              <Text style={styles.lvText}>LV: 0</Text>
+              <Text style={styles.lvText}>Flamigo LV: 0</Text>
               <Image source={require('../assets/health.png')} style={styles.healthImage}/>
-          </View>
-          <View style={styles.chara}>
+          </View >
+          <View style={styles.env}>
             <Image source={require('../assets/character/Character.png')} style={styles.characterImage}/>
+            <View style={styles.env2}>
+              
+            </View>
           </View>
+          <View style={styles.textBox}>
         </View>
+        </View>
+
+        
 
         <View style={styles.bodySection2}>
           <Text style={styles.bodyText}>Body Section 2</Text>
+          <FlatList
+            data={Object.keys(itemsData)}
+            renderItem={renderItem}
+            keyExtractor={(item) => item}
+          />
         </View>
       </ImageBackground>
     </View>
@@ -74,4 +109,5 @@ const HomeScreen = () => {
 };
 
 export default HomeScreen;
+
 
