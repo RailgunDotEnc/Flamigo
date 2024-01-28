@@ -4,7 +4,7 @@ import { Camera } from 'expo-camera';
 import * as MediaLibrary from 'expo-media-library';
 import { styles } from './HomeScreenStyles';
 import { useNavigation } from '@react-navigation/native';
-import fetch from 'isomorphic-fetch'; // Import isomorphic-fetch
+import fetch from 'isomorphic-fetch'; 
 
 const CameraPage = () => {
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
@@ -95,8 +95,13 @@ const CameraPage = () => {
       );
 
       const data = await response.json();
-      // Handle the API response data as needed
-      console.log(data);
+      // Assuming data.contents is a string or an object with a string property
+      const contentsString = typeof data.contents === 'object' ? data.contents.toString() : data.contents;
+
+      const isWaterPresent = contentsString.includes('water');
+
+      console.log('Is "water" present in data.contents?', isWaterPresent);
+
     } catch (error) {
       // Handle error
       //Alert.alert('Error', 'Failed to process image. Please try again.');
